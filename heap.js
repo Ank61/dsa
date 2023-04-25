@@ -8,10 +8,11 @@ class MaxBinaryHeap{
         //bubbling up
         let Index = this.value.length-1;
         let lastItem = this.value[Index];
-        while(Index>0){
+        while(Index>0){ //stop it when the top index is reached that is root level
+            //finding the parent
             let parentIndex = Math.floor((Index-1)/2);
             let parentElement = this.value[parentIndex];
-            if(lastItem<=parentElement)break;
+            if(lastItem<=parentElement)break; //if the parent is smaller than the lastItem then do nothing but loop outnof it
             //swap
             this.value[parentIndex] = lastItem;
             this.value[Index] = parentElement;
