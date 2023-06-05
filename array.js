@@ -116,7 +116,7 @@
 //       dp[i][0] = 1;
 //     }
 //     console.log("This is first loop" , dp)
-  
+
 //     for (let j = 0; j < n; j++) {
 //       dp[0][j] = 1;
 //     }
@@ -131,11 +131,11 @@
 //     // Return the count of paths for the bottom-right cell
 //     return dp[m - 1][n - 1];
 //   }
-  
+
 //   // Example usage
 //   const m = 3; // Number of rows
 //   const n = 3; // Number of columns
-  
+
 //   const paths = countPaths(m, n);
 //   console.log(`Number of paths: ${paths}`);
 
@@ -274,7 +274,7 @@
 //     }
 //     return ansRow;
 // }
-  
+
 // function pascalTriangle(n) {
 //     let ans = [];
 //     for (let row = 1; row <= n; row++) {
@@ -282,7 +282,7 @@
 //     }
 //     return ans;
 // }
-  
+
 // let n = 5;
 // console.log(pascalTriangle(n));
 
@@ -331,23 +331,78 @@
 // }
 // console.log(Leader([10, 22, 12, 3, 0, 6]))
 
-function Leader(array){
-    let newArray = [];
-let lastIndex =array.length-2;
-console.log(array[lastIndex], array[lastIndex+1])
-    while(lastIndex >=-1){
-        console.log("ARRAY",newArray,"index",lastIndex)
-        if(array[lastIndex]>array[lastIndex+1]){
-            newArray.push(array[lastIndex+1]);
-        }
-        lastIndex = lastIndex-1;
+// function Leader(array){
+//     let newArray = [];
+// let lastIndex =array.length-2;
+// console.log(array[lastIndex], array[lastIndex+1])
+//     while(lastIndex >=-1){
+//         console.log("ARRAY",newArray,"index",lastIndex)
+//         if(array[lastIndex]>array[lastIndex+1]){
+//             newArray.push(array[lastIndex+1]);
+//         }
+//         lastIndex = lastIndex-1;
+//     }
+// return newArray;
+// }
+// console.log(Leader([4,7,1,0]))
+
+
+// function GreaterThanLength(array) {
+//     const numberOfTimes = array.length;
+//     let check = 1;
+//     let resultArray = [];
+//     let condition = Math.floor(numberOfTimes / 2)
+//     array.sort((a, b) => {
+//         return a - b
+//     });
+//     for (let i = 0; i < array.length; i++) {
+//         if (array[i] === array[i + 1] && array[i] !== undefined) {
+//             check++;
+//         }
+//         console.log(check)
+//         console.log(condition)
+//         if (check > condition) {
+//             resultArray.push(array[i])
+//             check = 1
+//         }
+//     }
+//     return resultArray
+// }
+// console.log(GreaterThanLength([1, 2, 2, 3, 2]))
+
+
+
+
+
+
+function LargerSet(array){
+    let i=0;  //index for present outer arrray
+    let k =0; //index for inner array
+    let arrayFinal = [];
+    if(array.length===1){
+        return array;
     }
-return newArray;
+    while(i<array.length-1){
+        if(array[i][k+1] > array[i+1][k] && array[i][k+1] < array[i+1][k+1]){
+            console.log("Hit loop one")
+            const newArray =[array[i][k], array[i+1][k+1]];
+            arrayFinal.push(newArray);
+        }
+        else if(array[i][k]===array[i+1][k] || array[i][k+1]===array[i+1][k] || (array[i][k]===array[i+1][k] && array[i][k+1] < array[i+1][k+1])){
+            const newArray =[array[i][k], array[i+1][k+1]];
+            const isSimilar = arrayFinal.some((arr) => JSON.stringify(arr) === JSON.stringify(newArray));
+            if(!isSimilar){
+                arrayFinal.push(newArray);
+            }
+        }
+        else{
+            arrayFinal.push(array[i+1])
+            }
+        i++;
+    }
+    return arrayFinal
 }
-console.log(Leader([4,7,1,0]))
-
-
-
+console.log(LargerSet([[1,4],[5,6]]))
 
 
 
