@@ -372,45 +372,119 @@
 
 
 
+// function mergeOverlappingIntervals(arr) {
+//     const n = arr.length;
+    
+//     // sort the given intervals
+//     arr.sort((a, b) => a[0] - b[0]);
+    
+//     const ans = [arr[0]];
+    
+//     for (let i = 1; i < n; i++) {
+//       const last = ans[ans.length - 1];
+//       const curr = arr[i];
+      
+//       // if the current interval overlaps with the last interval
+//       console.log("First",ans)
+//       if (curr[0] <= last[1]) {
+//         console.log("Hit", last[i])
+//         last[1] = Math.max(last[1], curr[1]);
+//         console.log("Hot", arr)
+//       }
+//       // if the current interval does not overlap with the last interval
+//       else {
+//         //Simply pushing into array not doing any operation
+//         ans.push(curr);
+//       }
+//       console.log("Second",ans)
+//     }
+    
+//     return ans;
+//   }
+  
+//   const arr = [[1, 3], [8, 10], [2, 6], [15, 18]];
+//   const ans = mergeOverlappingIntervals(arr);
+//   console.log("The merged intervals are:");
+//   for (let it of ans) {
+//     console.log(`[${it[0]}, ${it[1]}]`);
+//   }
+
+
+//Brute force
+// function mergeTwoArray(array1, array1Length, array2, array2Length) {
+//     if(array1Length===0){
+//         array1 =[...array2]
+//     }else{
+//     array1.sort((a, b) => { return a - b })
+//     array2.sort((a, b) => { return a - b })
+//     for(let k=0; k<array1Length; k++ ){
+//         if(array1[k]===0){
+//             array1.splice(k,1)
+//         }
+//     }
+//     for (let i = 0; i < array1Length; i++) {
+//         if(array1[i]===0){
+//             array1.splice(i,1)
+//         }
+//         for (let j = 0; j < array2Length; j++) {
+//             if(array2[j]===0){
+//                 array2.splice(j,1)
+//             }
+//             if (array1[i] > array2[j]) {
+//                 array1.splice(i, 0, array2[j])
+//                 array2.splice(j, 1)
+//             }
+//         }
+//     }
+//     if (array2) {
+//        array1.push(...array2)
+//     }
+// }
+//     return array1;
+// }
+// console.log(mergeTwoArray([0], 0, [1], 1))
+
+
+//OPTIMAL SOLUTIONS FOR MERGE
+// var merge = function(nums1, m, nums2, n) {
+//     for (let i = m, j = 0; j < n; i++, j++) {
+//         nums1[i] = nums2[j];
+//     }
+//     console.log(nums1,nums2)
+//     nums1.sort((a, b) => a - b);
+//     return nums1
+// };
+// console.log(merge([1,2,3,0,0,0], 3,[2,5,6], 3))
 
 
 
-function LargerSet(array){
-    let i=0;  //index for present outer arrray
-    let k =0; //index for inner array
-    let arrayFinal = [];
-    if(array.length===1){
-        return array;
-    }
-    while(i<array.length-1){
-        if(array[i][k+1] > array[i+1][k] && array[i][k+1] < array[i+1][k+1]){
-            console.log("Hit loop one")
-            const newArray =[array[i][k], array[i+1][k+1]];
-            arrayFinal.push(newArray);
-        }
-        else if(array[i][k]===array[i+1][k] || array[i][k+1]===array[i+1][k] || (array[i][k]===array[i+1][k] && array[i][k+1] < array[i+1][k+1])){
-            const newArray =[array[i][k], array[i+1][k+1]];
-            const isSimilar = arrayFinal.some((arr) => JSON.stringify(arr) === JSON.stringify(newArray));
-            if(!isSimilar){
-                arrayFinal.push(newArray);
-            }
-        }
-        else{
-            arrayFinal.push(array[i+1])
-            }
-        i++;
-    }
-    return arrayFinal
-}
-console.log(LargerSet([[1,4],[5,6]]))
-
-
-
-
-
-
-
-
+// function LongestSubsequnce(nums) {
+//     nums.sort((a, b) => a - b);
+//     let count = 0;
+//     let temp = 1;
+//     if (nums.length === 0) {
+//         return 0;
+//     }
+//     if (nums.length === 1) {
+//         return 1;
+//     }
+//     console.log(nums)
+//     for (let i = 0; i < nums.length - 1; i++) {
+//         if (nums[i] === nums[i + 1] - 1) {
+//             console.log(nums[i])
+//             temp++;
+//             count = Math.max(count, temp);
+//         } else if (nums[i] === nums[i + 1]) {
+//             console.log("Gave the",nums[i])
+//             count = Math.max(count, temp);
+//         } else {
+//             temp = 1;
+//             count = Math.max(count, temp);
+//         }
+//     }
+//     return count;
+// }
+// console.log(LongestSubsequnce([1,2,0,1]))
 
 
 
