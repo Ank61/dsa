@@ -486,3 +486,123 @@
 //     return max;
 // }
 // console.log(maxNesting("(1)+((2))+(((3)))"))
+
+// function countLargest(string, number) {
+//     let set = new Set()
+//     let array = string.split("");
+//     console.log(array)
+//     for(let i=0; i<string.length; i++){
+//         for(let j=i+1; j<=number; j++){
+//             console.log(string[i],string[j])
+//             set.add(string[i]+string[j])
+//         }
+//     }
+//     return set
+// }
+// console.log(countLargest("abaaca", 1))
+
+
+// function palindrone(string) {
+//     let map = new Map() // tore the palindrone
+//     for (let i = 0; i < string.length; i++) {
+//         let newString = string[i];
+//         for (let j = i+1; j < string.length; j++) {
+//             newString = newString + string[j]
+//             console.log(newString)
+//           let result = checkPalindrone(newString)
+//           if(result){
+//             map.set(newString.length,newString)
+//           }
+//         }
+//     }
+//     return map
+// }
+// function checkPalindrone(string) {
+//     if(string.length%2!==0){
+//     //Odd
+//     let middle = Math.floor(string.length / 2)
+//     console.log("Middle", middle)
+//     let intialSection = string.slice(0, middle).toLowerCase()
+//     console.log("Intial",intialSection)
+//     let lastSection = string.slice(middle+1).toLowerCase()
+//     console.log("last",lastSection)
+//     let check = intialSection.split("").reverse().join("")
+//     console.log("Checking ",lastSection , check)
+//     if (check === lastSection) {
+//         console.log("******")
+//         return true
+//     }
+//     else {
+//         return false
+//     }
+//     }else{
+//         //Even
+//      console.log(string)
+//      let middle = Math.floor(string.length / 2)
+//      let intialSection = string.slice(0, middle).toLowerCase()
+//      let lastSection = string.slice(middle).toLowerCase()
+//      let check = intialSection.split("").reverse().join("")
+//      console.log("Checking in ODD ",lastSection , check)
+//      if (check === lastSection) {
+//          console.log("ODDDD ***")
+//          return true
+//      }
+//      else {
+//          return false
+//      }
+//     }
+// }
+// console.log(palindrone("cbbd"))
+//Optimise Longest Palindrone
+
+// var longestPalindrome = function(str) {
+//     let results = "";
+    
+//     for(let i = 0; i < str.length; i++) {
+//         let char = str[i];
+//         let left = i;
+//         let right = i;
+        
+//         while(left > 0 && str[left - 1] === char) left--;
+        
+//         while(right < str.length && str[right + 1] === char) {
+//             right++;
+//             i++;
+//         }
+		
+//         while(left >=0 && right < str.length - 1 && str[left - 1] === str[right + 1]) {
+//             left--;
+//             right++;
+//         }
+        
+//         if(results.length < (right - left + 1)) results = str.slice(left, right + 1);
+//     }
+//     return results;
+// };
+// console.log(longestPalindrome("cbbd"))
+
+
+
+// function beauty(string){
+//     let obj = {}
+//     let count=1;
+//     let resultMax =0;
+//     let resultMin=16000;
+//     for(let i=0; i<string.length; i++){
+//         if(string[i] in obj){
+//             count++
+//             obj[string[i]] = count
+//         }
+//         else{
+//             count=1;
+//             obj[string[i]] = count
+//         }
+//     }
+//     for(const key in obj){
+//         resultMin = Math.min(resultMin,obj[key])
+//         resultMax = Math.max(resultMax,obj[key])
+//     }
+//     console.log("Result max", resultMax, "resulMin",resultMin)
+//     return resultMax-resultMin
+// }
+// console.log(beauty("aabcb"))
